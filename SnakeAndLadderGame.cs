@@ -13,6 +13,9 @@ namespace SnakeAndLadder
         public static void CheckDieRoll()
         {
             Console.WriteLine("The starting position is -> "+position);
+            Random random = new Random();
+            int DiePosition = random.Next(1, 7);
+            Console.WriteLine("Die Number is -> : " + DiePosition);
         }
     }
 }
