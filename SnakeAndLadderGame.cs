@@ -33,15 +33,23 @@ namespace SnakeAndLadder
                         break;
                     case SNAKE:
                         this.position -= this.CheckDieRoll();
+                        if (this.position < 0)
+                        {
+                            this.position = 0;
+                        }
                         break;
                     case LADDER:
-                        this.position += this.CheckDieRoll();
-                        break;
-                    default:
-                        Console.WriteLine("Wrong Choice");
+                        int roll = this.CheckDieRoll();
+                        this.position += roll;
+                        if (this.position > 100)
+                        {
+                            this.position -= roll;
+                        }
                         break;
                 }
             }
+            Console.WriteLine("The position is " + this.position);
         }
     }
 }
+   
