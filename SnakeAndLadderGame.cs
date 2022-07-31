@@ -3,56 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SnakeAndLadder.Program;
 
 namespace SnakeAndLadder
-{
-    
+{   
     public class SnakeAndLadderGame
     {
-        const int NO_PLAY = 0, SNAKE = 1, LADDER = 2;
-        int position = 0, count = 0;
-        public int CheckDieRoll()
+        Player P1 = new Player();
+        Player P2 = new Player();
+        Random random = new Random();
+        public void start()
         {
-            Console.WriteLine("The starting position is -> "+position);
-    
-            Random random = new Random();
-            int DiePosition = random.Next(1, 7);
-            Console.WriteLine("Die Number is -> : " + DiePosition);
-            return DiePosition;
-        }
-        public void Game()
-        {
-            while (this.position < 100)
+            while (P1.position < 100 && P2.position < 100)
             {
-                Random random = new Random();
-                int option = random.Next(0, 3);
-                switch (option)
-                {
-                    case NO_PLAY:
-                        this.position += 0;
-                        break;
-                    case SNAKE:
-                        this.position -= this.CheckDieRoll();
-                        if (this.position < 0)
-                        {
-                            this.position = 0;
-                        }
-                        break;
-                    case LADDER:
-                        int roll = this.CheckDieRoll();
-                        this.position += roll;
-                        if (this.position > 100)
-                        {
-                            this.position -= roll;
-                        }
-                        break;
-                }
-                Console.WriteLine("The position after every die roll is : " + this.position);
-                count++;
+                Console.WriteLine("Player1 : ");
+                P1.RollDice();
+                P1.Display();
+                if (P1.position == 100)
+                    break;
+                P2.RollDice();
+                P2.Display();
             }
-            Console.WriteLine("The number of times the dice played : " + count++);
+            Console.WriteLine("Player1 total rolled:" + P1.totalRoll);
+            Console.WriteLine("Player2 total rolled:" + P2.totalRoll);
+
+            if (P2.position == 100)
+            {
+                Console.WriteLine("Player 2 has won!!");
+            }
+            else
+                Console.WriteLine("Player 1 has won!!");
         }
+
     }
 }
+
 
    
